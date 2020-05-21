@@ -1,0 +1,49 @@
+---
+title: ""
+output: 
+  html_document:
+    css: markdown.css
+params:
+  min_date: NA
+  max_date: NA
+  regions: NA
+  app_dir: NA
+  connection: NA
+---
+
+```{r echo = FALSE, dpi = 300, message=FALSE, results='hide'}
+
+
+
+# Loading functions with plots
+source(paste0(params$app_dir, "/server_functions/plot_functions.R"), local = TRUE)
+con <- params$connection
+
+## Choosing proper plot based on params
+
+
+if (sum(is.na(c(params$min_date, params$max_date, params$regions))) == 0){
+  time_series_plot(params$min_date, params$max_date, params$regions, 10)  
+  
+} else if(sum(is.na(c(params$min_date, params$max_date, params$regions))) == 1){
+  
+  bar_plot(params$min_date, params$regions, 10)
+  
+} else{
+  shp <- readOGR(dsn = paste0(params$app_dir,"/server_functions/Shapefiles/Wojewodztwa.shp"),
+               use_iconv=TRUE,
+               encoding = "UTF-8"
+               )
+  ## Adjusting names of regions in SHP files to match them easily in function which creates day map plot
+  shp$JPT_NAZWA_ <- stringr::str_to_title(shp$JPT_NAZWA_)
+  map_plot(params$min_date, 10)
+  
+}
+  
+  
+
+
+
+
+```
+
