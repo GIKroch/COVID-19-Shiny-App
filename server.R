@@ -214,10 +214,16 @@ shinyServer(function(input, output, session) {
                      app_dir = app_directory, 
                      connection = con)
       
-      tempReport <- file.path(getwd(), "markdown/output.Rmd")
-      # file.copy("markdown/output.Rmd", tempReport, overwrite = TRUE)
+      # tempReport <- file.path(getwd(), "markdown/output.Rmd")
+      # rmarkdown::render(tempReport, 
+      #                  output_file = file, 
+      #                  params = params,
+      #                  envir = new.env(parent = globalenv())
       
-      rmarkdown::render(tempReport, 
+      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp/R")
+      file.copy("markdown/output.Rmd", report_path, overwrite = TRUE)
+      
+      rmarkdown::render(report_path, 
                         output_file = file, 
                         params = params,
                         envir = new.env(parent = globalenv())
@@ -242,10 +248,16 @@ shinyServer(function(input, output, session) {
                      app_dir = app_directory, 
                      connection = con)
       
-      tempReport <- file.path(getwd(), "markdown/output.Rmd")
-      # file.copy("markdown/output.Rmd", tempReport, overwrite = TRUE)
+      # tempReport <- file.path(getwd(), "markdown/output.Rmd")
+      # rmarkdown::render(tempReport, 
+      #                  output_file = file, 
+      #                  params = params,
+      #                  envir = new.env(parent = globalenv())
       
-      rmarkdown::render(tempReport, 
+      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp/R")
+      file.copy("markdown/output.Rmd", report_path, overwrite = TRUE)
+      
+      rmarkdown::render(report_path, 
                         output_file = file, 
                         params = params,
                         envir = new.env(parent = globalenv())
@@ -267,10 +279,16 @@ shinyServer(function(input, output, session) {
                      app_dir = app_directory, 
                      connection = con)
       
-      tempReport <- file.path(getwd(), "markdown/output.Rmd")
-      # file.copy("markdown/output.Rmd", tempReport, overwrite = TRUE)
+      # tempReport <- file.path(getwd(), "markdown/output.Rmd")
+      # rmarkdown::render(tempReport, 
+      #                  output_file = file, 
+      #                  params = params,
+      #                  envir = new.env(parent = globalenv())
       
-      rmarkdown::render(tempReport, 
+      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp/R")
+      file.copy("markdown/output.Rmd", report_path, overwrite = TRUE)
+      
+      rmarkdown::render(report_path, 
                         output_file = file, 
                         params = params,
                         envir = new.env(parent = globalenv())
