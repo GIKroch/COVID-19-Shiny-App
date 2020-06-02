@@ -1,3 +1,15 @@
+library(shiny)
+library(RSQLite)
+library(DBI)
+library(jsonlite)  
+library(rgdal)
+#library(tidyverse)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(tidyr)
+
+
 ## Source functions
 source("server_functions/plot_functions.R", local = TRUE)
 source("server_functions/db_functions.R", local = TRUE)
