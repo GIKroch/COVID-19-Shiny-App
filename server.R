@@ -26,7 +26,7 @@ shp$JPT_NAZWA_ <- stringr::str_to_title(shp$JPT_NAZWA_)
 
 shinyServer(function(input, output, session) {
   
-  update_data()
+
   ## Updating db data if needed
   
   
