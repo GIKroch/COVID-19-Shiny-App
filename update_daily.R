@@ -1,0 +1,7 @@
+setwd("/srv/shiny-server/covid")
+source("server_functions/plot_functions.R")
+source("server_functions/db_functions.R")
+library(RSQLite)
+library(dplyr)
+library(jsonlite)
+update_data()
