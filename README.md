@@ -13,6 +13,9 @@ b) The number of diagnosed cases of coronavirus on day X in Silesia = 500 and 10
 
 There is the huge difference between these two sentences. The first clearly indicates that it is Silesia which suffers more. However, without the number of tests conducted, this statistic is, actually, useless. Let's look at the example b, if we analyze the number of diagnosed cases in relation to the number of tests, we get a completely different view. In the example, 50 % (500/1000) of Silesian who were tested obtained positive coronavirus result. In the same time, 67 % (200/300) Mazovians tested, got a positive outcome. There are obviously many more statistical aspects, which should be analyzed to reliably state, which region is in fact the most affected. However, with this simple example discussed, it can be seen how easy it is to lie on data by presenting only part of the information available. 
 
+## Data
+Database is updated automatically everyday. We base on api provided by vaclavrut on apify - https://apify.com/vaclavrut/covid-pl. This api downloads data from official Polish government site, https://www.gov.pl/.
+
 ## Built With
 
 The technologies used to create the aplication:
