@@ -6,7 +6,7 @@ library(DBI)
 library(jsonlite)
 library(tidyverse)
 
-setwd("C:/Users/grzeg/Desktop/studia/Data Science/2 rok/semestr 2/Reproducible_Research/App")
+
 ## Reading JSON
 df <- fromJSON("https://api.apify.com/v2/datasets/L3VCmhMeX0KUQeJto/items?format=json&clean=1")
 
@@ -40,12 +40,12 @@ for (i in 1:nrow(df)){
 }
 
 
-
+long_df
 
 regions <- long_df$region %>% unique()
 regions <- regions[1:17]
 regions
-write.csv(regions, "regions_original.csv", row.names = FALSE)
+# write.csv(regions, "regions_original.csv", row.names = FALSE)
 regions <- regions[regions != "Cala Polska"]
 
 regions
@@ -54,7 +54,7 @@ regions_correct <- c("Œl¹skie", "Dolnoœl¹skie", "Pomorskie", "Lubelskie", "Ma³op
                      "Lubuskie", "Opolskie", "Kujawsko-Pomorskie", "Podlaskie"
                      )
 
-write.csv(regions_correct, "regions_correct.csv", row.names = FALSE)
+
 long_df <- long_df %>% filter(region %in% regions)
 
 
@@ -72,7 +72,7 @@ long_data <- long_data %>% select(ID, Date, region, infectedCount, deceasedCount
 
 
 
-con <- dbConnect(RSQLite::SQLite(), "covid_data.db")
+con <- dbConnect(RSQLite::SQLite(), "C:/Users/grzeg/Desktop/covid_data.db")
 dbWriteTable(con, "Data", long_data, field.types = c(ID = "Integer Primary Key"))
 dbDisconnect(con)
 
