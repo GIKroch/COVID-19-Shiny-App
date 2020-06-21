@@ -26,7 +26,7 @@ shp$JPT_NAZWA_ <- stringr::str_to_title(shp$JPT_NAZWA_)
 
 shinyServer(function(input, output, session) {
   
-  update_data()
+
   ## Updating db data if needed
   
   
@@ -220,7 +220,8 @@ shinyServer(function(input, output, session) {
       #                  params = params,
       #                  envir = new.env(parent = globalenv())
       
-      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp/R")
+      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp")
+      file.copy("markdown/markdown.css", "/tmp/markdown.css")
       file.copy("markdown/output.Rmd", report_path, overwrite = TRUE)
       
       rmarkdown::render(report_path, 
@@ -254,7 +255,8 @@ shinyServer(function(input, output, session) {
       #                  params = params,
       #                  envir = new.env(parent = globalenv())
       
-      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp/R")
+      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp")
+      file.copy("markdown/markdown.css", "/tmp/markdown.css")
       file.copy("markdown/output.Rmd", report_path, overwrite = TRUE)
       
       rmarkdown::render(report_path, 
@@ -285,7 +287,8 @@ shinyServer(function(input, output, session) {
       #                  params = params,
       #                  envir = new.env(parent = globalenv())
       
-      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp/R")
+      report_path <- tempfile(fileext = ".Rmd",tmpdir="/tmp")
+      file.copy("markdown/markdown.css", "/tmp/markdown.css")
       file.copy("markdown/output.Rmd", report_path, overwrite = TRUE)
       
       rmarkdown::render(report_path, 
