@@ -10,6 +10,7 @@ time_series_plot <- function(min_selected_date, max_selected_date, selected_regi
                  paste0("'", max_selected_date, "'"))
   
   selected_data <- dbGetQuery(con, query)
+  selected_data <- selected_data %>% mutate(Date = as.Date(Date))
   
   plt <- selected_data %>%
     ggplot() +
@@ -17,9 +18,17 @@ time_series_plot <- function(min_selected_date, max_selected_date, selected_regi
                   y = infectedCount,
                   group = region,
                   color = region)) +
-    theme(axis.text.x = element_text(angle = 90), 
-          plot.title = element_text(hjust = 0.5, size = font_size)) + 
-    ggtitle(paste("Count of diagnosed cases per voivodeship from", min_selected_date, "to", max_selected_date))
+    theme(axis.text.x = element_text(angle = 90, size = 15), 
+          axis.text.y = element_text(size = 20), 
+          plot.title = element_text(hjust = 0.5, size = font_size), 
+          plot.background = element_rect(fill = "#CD853F", colour = "#CD853F",
+                                size = 2, linetype = "solid"), 
+          axis.title=element_text(size=14,face="bold"), 
+          legend.background = element_rect(fill = "#AFEEEE", color = "#AFEEEE", 
+          size = 2, linetype = "solid")) + 
+    ggtitle(paste("Count of diagnosed cases per voivodeship from", min_selected_date, "to", max_selected_date)) + 
+    scale_x_date(date_breaks = "1 week") + ylab("Count of cases") + xlab("") + labs(color = "Region")
+    
   
   
   return(plt)
@@ -37,16 +46,24 @@ bar_plot <- function(selected_date, selected_regions, font_size){
                 
   selected_data <- dbGetQuery(con, query)
   
+
   plt <- selected_data %>% 
     ggplot() + 
     geom_bar(aes(x = region, 
                  y = infectedCount), 
-             stat = 'identity') + 
-    theme(axis.text.x = element_text(angle = 45, size = 12, face = 'bold', hjust = 1), 
-          axis.text.y = element_text(size = 12), 
-          plot.title = element_text(hjust = 0.5, size = font_size)) + 
+             stat = 'identity', 
+             fill = "#AFEEEE", 
+             color = "#CD853F",
+             size = 1.5) + 
+    theme(axis.text.x = element_text(angle = 90, size = 20, face = "bold"), 
+          axis.text.y = element_text(size = 20), 
+          plot.title = element_text(hjust = 0.5, size = font_size), 
+          plot.background = element_rect(fill = "#CD853F", colour = "#CD853F",
+                                size = 2, linetype = "solid"), 
+          axis.title=element_text(size=14,face="bold")) + 
     scale_fill_brewer(palette="YlOrRd") + 
-    ggtitle(paste("Count of diagnosed cases per voivodeship on", selected_date))
+    ggtitle(paste("Count of diagnosed cases per voivodeship on", selected_date)) + 
+    ylab("Count of cases") + xlab("")
   
 
 

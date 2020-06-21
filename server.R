@@ -47,7 +47,7 @@ shinyServer(function(input, output, session) {
     req(input$plotType)
     if (input$plotType != 'Map daily'){
       
-      print("not map")
+      
       ## Loading regions matters for barplot and time plot
       regions <- dbGetQuery(con, "SELECT DISTINCT (region) FROM Data")
       regions <- unlist(regions, use.names = FALSE)
@@ -138,7 +138,7 @@ shinyServer(function(input, output, session) {
           # Getting dates
           selected_date <-  input$Dates_Barplot
           
-          print(selected_date)
+          
           ## Converting dates to vector and extracting min and max date for sql query
           
           
@@ -161,7 +161,7 @@ shinyServer(function(input, output, session) {
     ## This condition is for map. The region does not matter, but the date does
     else{
       
-      print("map")
+      
       output$secondSelection <- renderUI({
         selectInput(inputId = "Date_Map", "Date: ", choices = dates)
       })

@@ -39,9 +39,6 @@ if(!require(rgdal)){
 }
 
 
-## Connecting to database
-
-# setwd("C:/Users/grzeg/Desktop/studia/Data Science/2 rok/semestr 2/Reproducible_Research/App")
 runApp(appDir = getwd(),
        launch.browser = TRUE,
        port = 4201)
